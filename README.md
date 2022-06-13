@@ -14,3 +14,8 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## App video :movie_camera:
+
+https://user-images.githubusercontent.com/27253114/173261177-80183a1a-ce4f-4908-ad39-e0772d1897b8.mp4
+
