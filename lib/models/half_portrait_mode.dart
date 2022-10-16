@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -50,6 +51,16 @@ class _HalfPortraitModeState extends State<HalfPortraitMode> {
       return value - 1;
     }
     return 0;
+  }
+
+  void playButtomSound() {
+    final player = AudioCache();
+    player.play('audio/button_click.mp3');
+  }
+
+  void playDigitalAlarm() {
+    final player = AudioCache();
+    player.play('audio/digital_alarm_beeping.mp3');
   }
 
   _updateTime(int pomodoro, int shortBreak, int longBreak) async {
@@ -323,12 +334,14 @@ class _HalfPortraitModeState extends State<HalfPortraitMode> {
                                     timer.cancel();
                                     widget.startIsPressed = false;
                                     setState(() {});
+                                    playDigitalAlarm();
                                   } else {
                                     widget.seconds--;
                                     setState(() {});
                                   }
                                 });
                               }
+                              playButtomSound();
                             },
                           ),
                         ),

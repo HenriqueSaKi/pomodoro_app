@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,6 +41,16 @@ class _PortraitModeState extends State<PortraitMode> {
   final TextEditingController _pomodoroController = TextEditingController();
   final TextEditingController _shortBreakController = TextEditingController();
   final TextEditingController _longBreakController = TextEditingController();
+
+  void playButtomSound() {
+    final player = AudioCache();
+    player.play('audio/button_click.mp3');
+  }
+
+  void playDigitalAlarm() {
+    final player = AudioCache();
+    player.play('audio/digital_alarm_beeping.mp3');
+  }
 
   _updateTime(int pomodoro, int shortBreak, int longBreak) async {
     final prefs = await SharedPreferences.getInstance();
@@ -348,6 +359,7 @@ class _PortraitModeState extends State<PortraitMode> {
                               widget.startIsPressed == false) {
                             timer.cancel();
                             setState(() {});
+                            playDigitalAlarm();
                           } else {
                             widget.seconds--;
                             setState(() {});
@@ -358,6 +370,7 @@ class _PortraitModeState extends State<PortraitMode> {
                           });
                         });
                       }
+                      playButtomSound();
                     },
                   ),
                 ),
