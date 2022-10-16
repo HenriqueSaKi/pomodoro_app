@@ -344,9 +344,12 @@ class _LandscapeModeState extends State<LandscapeMode> {
                                 widget.seconds = 60;
                                 widget.minutes--;
                               }
-                              if ((widget.minutes == 0 &&
-                                      widget.seconds == 0) ||
-                                  widget.startIsPressed == false) {
+                              if (widget.startIsPressed == false) {
+                                timer.cancel();
+                                widget.startIsPressed = false;
+                                setState(() {});
+                              } else if (widget.minutes == 0 &&
+                                  widget.seconds == 0) {
                                 timer.cancel();
                                 widget.startIsPressed = false;
                                 setState(() {});
